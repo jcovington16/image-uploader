@@ -47,6 +47,7 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 - What have you learned/improved?
   - https://bloglogrocketcomhow-to-use-svgs-in-react/
   - https://getbootstrap.com/docs/3.4/css/#buttons-options
+  - https://blog.logrocket.com/create-a-drag-and-drop-component-with-react-dropzone/
 - Your wisdom? :)
 
 ### Built With
