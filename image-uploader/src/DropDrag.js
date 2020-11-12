@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Background from "./Background";
 import "../../../image-uploader/image.svg";
 
@@ -6,6 +6,8 @@ function DropDrag() {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [validFiles, setValidFiles] = useState([]);
+  const modalImageRef = useRef();
+  const modalRef = useRef();
 
   useEffect(() => {
     let filteredArray = selectedFiles.reduce((file, current) => {
@@ -88,15 +90,31 @@ function DropDrag() {
     // find the index of the item
     // remove the item from array
 
-    const validFileIndex = validFiles.findIndex(e => e.name === name);
+    const validFileIndex = validFiles.findIndex((e) => e.name === name);
     validFiles.splice(validFileIndex, 1);
     // update validFiles array
     setValidFiles([...validFiles]);
-    const selectedFileIndex = selectedFiles.findIndex(e => e.name === name);
+    const selectedFileIndex = selectedFiles.findIndex((e) => e.name === name);
     selectedFiles.splice(selectedFileIndex, 1);
     // update selectedFiles array
     setSelectedFiles([...selectedFiles]);
-  }
+  };
+
+  const openImageModal = (file) => {
+    const reader = new FileReader();
+    // Allows web app to asynchronously read the contents of files
+    modalRef.current.style.display = "block";
+    // Need a way to read the content of the file using readAsDataUrl
+    reader.readAsDataURL(file);
+    reader.onload = function (e) {
+      modalImageRef.current.style.backgroundImage = `url(${e.target.result})`;
+    };
+  };
+
+  const closeModal = () => {
+    modalRef.current.style.display = "none";
+    modalImageRef.current.style.backgroundImage = "none";
+  };
 
   return (
     <div className="container">
@@ -112,7 +130,13 @@ function DropDrag() {
       <div className="drop__display">
         {validFiles.map((data, i) => (
           <div className="drop__status" key={i}>
-            <div>
+            <div
+              onClick={
+                !data.invalid
+                  ? () => openImageModal(data)
+                  : () => removeFile(data.name)
+              }
+            >
               <div className="logo"></div>
               <div className="drop__filetype">{fileType(data.name)}</div>
               <span
@@ -127,11 +151,22 @@ function DropDrag() {
                 <span className="drop__fileErrorMessage">{errorMessage}</span>
               )}
             </div>
-            <div className="drop__fileremove" onClick={() => removeFile(data.name)}>x</div>
+            <div
+              className="drop__fileremove"
+              onClick={() => removeFile(data.name)}
+            >
+              x
+            </div>
           </div>
         ))}
       </div>
-      <div className="drop__modal"></div>
+      <div className="drop__modal" ref={modalRef}>
+        <div className="drop__overlay"></div>
+        <span className="drop__close" onClick={() => closeModal()}>
+          x
+        </span>
+        <div className="drop__modalImage" ref={modalImageRef}></div>
+      </div>
     </div>
   );
 }
