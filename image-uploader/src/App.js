@@ -1,11 +1,21 @@
-import React from "react";
+import React, {useRef} from "react";
 import "./App.css";
 import "../../../image-uploader/image.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DropDrag from "./DropDrag";
+import handleFiles from "./DropDrag";
 
 function App() {
-  const uploadFiles = () => {};
+  const fileInputRef = useRef();
+  const uploadFiles = () => {
+    fileInputRef.current.click();
+  };
+
+  const fileSelected = () => {
+    if (fileInputRef.current.files.length) {
+      handleFiles(fileInputRef.current.files);
+    }
+  };
 
   return (
     // BEM
@@ -23,10 +33,10 @@ function App() {
           Drag & Drop your image here
         </div>
       </div>
-
       <div className="main__footer">Or</div>
       <div className="footer__button">
-        <button className="btn btn-primary" onClick={uploadFiles}>
+        <input type="hidden" multiple onChange={fileSelected} />
+        <button className="btn btn-primary" onClick={() => uploadFiles()}>
           Choose a file
         </button>
       </div>
