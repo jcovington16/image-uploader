@@ -8,6 +8,7 @@ function DropDrag() {
   const [validFiles, setValidFiles] = useState([]);
   const modalImageRef = useRef();
   const modalRef = useRef();
+  const [unsupportedFiles, setUnsupportedFiles] = useState([]);
 
   useEffect(() => {
     let filteredArray = selectedFiles.reduce((file, current) => {
@@ -53,6 +54,8 @@ function DropDrag() {
         setSelectedFiles((prevArray) => [...prevArray, files[i]]);
         // set error message
         setErrorMessage("File type not permitted");
+
+        setUnsupportedFiles((prevArray) => [...prevArray, files[i]]);
       }
     }
   };
@@ -98,6 +101,16 @@ function DropDrag() {
     selectedFiles.splice(selectedFileIndex, 1);
     // update selectedFiles array
     setSelectedFiles([...selectedFiles]);
+
+    // Each invalid file dropped by the user will be added to the array
+    const unsupportedFileIndex = unsupportedFiles.findIndex(
+      (e) => e.name === name
+    );
+    if (unsupportedFileIndex !== -1) {
+      unsupportedFiles.splice(unsupportedFileIndex, 1);
+      // update unsupportedFiles array
+      setUnsupportedFiles([...unsupportedFiles]);
+    }
   };
 
   const openImageModal = (file) => {
@@ -111,13 +124,13 @@ function DropDrag() {
     };
   };
 
-  const closeModal = () => {
-    modalRef.current.style.display = "none";
-    modalImageRef.current.style.backgroundImage = "none";
-  };
-
   return (
     <div className="container">
+      {unsupportedFiles.length ? (
+        <p>Please remove all unsupported files.</p>
+      ) : (
+        ""
+      )}
       <div
         className="drop__container"
         onDragOver={dragOver}
@@ -137,7 +150,6 @@ function DropDrag() {
                   : () => removeFile(data.name)
               }
             >
-              <div className="logo"></div>
               <div className="drop__filetype">{fileType(data.name)}</div>
               <span
                 className={`drop__filename ${
@@ -162,9 +174,6 @@ function DropDrag() {
       </div>
       <div className="drop__modal" ref={modalRef}>
         <div className="drop__overlay"></div>
-        <span className="drop__close" onClick={() => closeModal()}>
-          x
-        </span>
         <div className="drop__modalImage" ref={modalImageRef}></div>
       </div>
     </div>

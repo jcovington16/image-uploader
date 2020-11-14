@@ -5,6 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import DropDrag from "./DropDrag";
 
 function App() {
+  const uploadFiles = () => {};
+
   return (
     // BEM
 
@@ -21,9 +23,12 @@ function App() {
           Drag & Drop your image here
         </div>
       </div>
+
       <div className="main__footer">Or</div>
       <div className="footer__button">
-        <button className="btn btn-primary">Choose a file</button>
+        <button className="btn btn-primary" onClick={uploadFiles}>
+          Choose a file
+        </button>
       </div>
     </div>
   );
