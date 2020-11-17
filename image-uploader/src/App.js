@@ -39,7 +39,6 @@ function App() {
       </div>
       <div className="main__footer">Or</div>
       <div className="footer__button">
-        <input type="hidden" multiple onChange={fileSelected} />
         <button className="btn btn-primary" onClick={fileInputClicked}>
           Choose a file
         </button>
