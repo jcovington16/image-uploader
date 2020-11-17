@@ -64,10 +64,18 @@
   padding-bottom: 15px;
 }
 
-.btn {
+/* .btn {
+  border-radius: 10px;
+} */
+
+input {
   border-radius: 10px;
 }
 
 .drop__upload {
   text-align: center;
+}
+
+.file-input {
+  display: none;
 }

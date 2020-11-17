@@ -124,8 +124,17 @@ export default function DropDrag() {
   //   };
   // };
 
+  // const uploadFiles = () => {};
+
   return (
     <div className="container">
+      {/* {unsupportedFiles.length === 0 && validFiles.length ? (
+        <button className="file-upload-btn" onClick={() => uploadFiles()}>
+          Upload Files
+        </button>
+      ) : (
+        ""
+      )} */}
       {unsupportedFiles.length ? (
         <p>Please remove all unsupported files.</p>
       ) : (
