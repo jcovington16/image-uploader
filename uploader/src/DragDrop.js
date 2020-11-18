@@ -1,5 +1,6 @@
 import React from "react";
-import "../../../image-uploader/image.svg";
+import "./DragDrop.css";
+
 import Background from "./Background";
 
 const DragDrop = () => {

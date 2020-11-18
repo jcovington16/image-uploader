@@ -1,9 +1,17 @@
 .container {
-    transform: translate(-100%)l
+  transform: translate(-100%);
 }
 
-
-
+.main__container {
+  border-radius: 5px;
+  box-shadow: 0 0 5px;
+  width: 50%;
+  max-width: 100%;
+  padding: 15px;
+  padding-top: 15px;
+  padding-right: 25px;
+  padding-left: 25px;
+}
 
 /* .App {
     border-radius: 5px;
