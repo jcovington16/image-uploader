@@ -1,5 +1,6 @@
 import React from "react";
 import "./DragDrop.css";
+import React, { useState } from "react";
 
 import Background from "./Background";
 
