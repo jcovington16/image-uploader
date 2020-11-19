@@ -11,25 +11,56 @@
   padding-top: 15px;
   padding-right: 25px;
   padding-left: 25px;
+  margin: auto;
+  margin-top: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  top: 100px;
+  left: 50px;
 }
 
-/* .App {
-    border-radius: 5px;
-    box-shadow: 0 0 5px;
-    width: 50%;
-    max-width: 100%;
-    padding: 15px;
-    padding-top: 15px;
-    padding-right: 25px;
-    padding-bottom: 15px;
-    padding-left: 25px;
-    margin: auto;
-    margin-top: auto;
-    margin-right: auto;
-    margin-bottom: auto;
-    margin-left: auto;
-    display: block;
-    position: relative;
-    top: 100px;
-    left: 50px;
-  } */
+.drop__header {
+  text-align: center;
+  color: grey;
+}
+
+.drop__second-header {
+  text-align: center;
+  padding-top: 5%;
+  padding-bottom: 10%;
+  color: grey;
+}
+
+.drop__container {
+  border-radius: 10px;
+  border: dashed 2px lightblue;
+  background-color: rgb(241, 245, 248);
+}
+
+.drop__image {
+  text-align: center;
+  padding-top: 10%;
+}
+
+.drop__bottom-text {
+  text-align: center;
+  color: grey;
+  opacity: 70%;
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+
+.drop__bottom {
+  text-align: center;
+  padding-top: 10%;
+  padding-bottom: 10%;
+  color: grey;
+  opacity: 70%;
+}
+
+.drop__footer {
+  border-radius: 10px;
+  text-align: center;
+  padding-bottom: 15px;
+}
